@@ -67,12 +67,12 @@ $this->title = 'My Yii Application';
                                 'header' => 'Status',
                                 //'footer' => 'Gambar'
                             ],
-                            [
-                                'class' => 'yii\grid\ActionColumn',
-                                'header' => 'Action',
-                                'headerOptions' => ['width' => '80'],
-                                // 'template' => '{view}{update}{delete}'
-                            ]
+                            // [
+                            //     'class' => 'yii\grid\ActionColumn',
+                            //     'header' => 'Action',
+                            //     'headerOptions' => ['width' => '80'],
+                            //     'template' => '{view}{update}{delete}'
+                            // ]
                         ],
         ]);
 
