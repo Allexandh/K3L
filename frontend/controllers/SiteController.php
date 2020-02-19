@@ -7,6 +7,7 @@ use Yii;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
+use yii\web\UploadedFile;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
@@ -15,6 +16,7 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use frontend\models\FormForm;
+use frontend\models\UploadForm;
 
 /**
  * Site controller
@@ -75,6 +77,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        // $forms = new FormForm();
+        // $images = new UploadForm();
         //$posts = Yii::$app->db->createCommand('SELECT * FROM user')->queryAll();
         //var_dump($posts);
         return $this->render('index');
@@ -146,10 +150,16 @@ class SiteController extends Controller
     public function actionForm()
     {
         $model = new FormForm();
+        $images = new UploadForm();
 
         if ($model->load(Yii::$app->request->post())) {
             //var_dump(Yii::$app->request->post());
-            $model->saveData();
+            $images->imageFiles = UploadedFile::getInstances($images, 'imageFiles');
+            $images->upload();
+            $id = $model->saveData();
+            //$id = $model->getId();
+            $images->saveData($id);
+
             if ($model->check(Yii::$app->request->post())) {
                 Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
             } else {
@@ -163,8 +173,27 @@ class SiteController extends Controller
             // var_dump($model->getForms());
             return $this->render('form', [
                 'model' => $model,
+                'images' => $images
             ]);
         }
+    }
+
+    public function actionUpload()
+    {
+        $images = new UploadForm();
+
+        if (Yii::$app->request->isPost) {
+            $images->imageFile = UploadedFile::getInstances($images, 'imageFile');
+            if ($images->upload()) {
+                echo "masukk";
+                // file is uploaded successfully
+                //return;
+            }else{
+                echo "kaga cuy";
+            }
+        }
+
+        //return $this->render('upload', ['images' => $images]);
     }
 
 

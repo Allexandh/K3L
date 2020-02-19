@@ -21,12 +21,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'form-form']); ?>
+            <?php $form = ActiveForm::begin(['id' => 'form-form'],['options' => ['enctype' => 'multipart/form-data']]); ?>
 
                 <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
                 <?= $form->field($model, 'phonenum') ?>
                 <?= $form->field($model, 'location') ?>
                 <?= $form->field($model, 'gambar') ?>
+                <?= $form->field($images, 'imageFiles[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
                 <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
 

@@ -30,9 +30,10 @@ class Forms extends ActiveRecord
 
 
 
-    // public function getId()
-    // {
-    //     return $this->getPrimaryKey();
-    // }
+    public function getId()
+    {   
+        return $this->getPrimaryKey();
+        //return $this->getPrimaryKey();
+    }
 
 }

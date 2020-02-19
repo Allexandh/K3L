@@ -55,7 +55,8 @@ class FormForm extends Model
     	$forms->casedue = date('Y-m-d H:i:s');
     	$forms->status = "Process";
         //echo $forms->name;
-        return $forms->save();
+        $forms->save();
+        return $forms->getId();
         //return $this->name;
     }
 
@@ -68,6 +69,7 @@ class FormForm extends Model
     	return $this->name;
     	//return true;
     }
+
 
     /**
      * {@inheritdoc}
