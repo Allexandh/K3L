@@ -4,6 +4,7 @@
 use yii\grid\GridView;
 use yii\data\ActiveDataProvider;
 use common\models\Forms;
+use common\models\Images;
 
 $dataProvider = new ActiveDataProvider([
         'query' => Forms::find(),
@@ -12,8 +13,8 @@ $dataProvider = new ActiveDataProvider([
         ],
         //'pagination' => false,
         'sort' =>[
-            'attributes' => ['location','description'],
-            'defaultOrder' => ['location' =>SORT_ASC,'description' =>SORT_DESC]
+            'attributes' => ['tanggalwaktu', 'location','description'],
+            'defaultOrder' => ['tanggalwaktu' =>SORT_DESC, 'location' =>SORT_ASC,'description' =>SORT_DESC]
         ],
         //'sort' => false
 
@@ -44,6 +45,7 @@ $this->title = 'My Yii Application';
             //'layout' => "\n{pager}\n{summary}\n{items}",
             //'showOnEmpty' =>true,
             'columns' => [
+                            'tanggalwaktu',
                             [
                                 'attribute' => 'gambar',
                                 'label' => 'Gambar',
@@ -67,12 +69,12 @@ $this->title = 'My Yii Application';
                                 'header' => 'Status',
                                 //'footer' => 'Gambar'
                             ],
-                            // [
-                            //     'class' => 'yii\grid\ActionColumn',
-                            //     'header' => 'Action',
-                            //     'headerOptions' => ['width' => '80'],
-                            //     'template' => '{view}{update}{delete}'
-                            // ]
+                            [
+                                'class' => 'yii\grid\ActionColumn',
+                                'header' => 'Action',
+                                'headerOptions' => ['width' => '80'],
+                                'template' => '{view}{update}{delete}'
+                            ]
                         ],
         ]);
 

@@ -155,10 +155,14 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             //var_dump(Yii::$app->request->post());
             $images->imageFiles = UploadedFile::getInstances($images, 'imageFiles');
-            $images->upload();
-            $id = $model->saveData();
+
+            date_default_timezone_set('Asia/Jakarta');
+            $time = date('Y-m-d_H-i-s');
+
+            $id = $model->saveData($time);
+            $images->upload($id,$time);
             //$id = $model->getId();
-            $images->saveData($id);
+            $images->saveData($id,$time);
 
             if ($model->check(Yii::$app->request->post())) {
                 Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');

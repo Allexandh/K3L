@@ -40,19 +40,19 @@ class FormForm extends Model
         ];
     }
 
-    public function saveData(){
+    public function saveData($time){
         $forms = new Forms();
     	//$forms->caseid = $this->caseid; auto increment
     	$forms->phonenum = $this->phonenum;
     	$forms->name = $this->name;
     	$forms->location = $this->location;
         $forms->description = $this->description;
-        $forms->gambar = $this->gambar;
+        $forms->gambar = "kosong";
 
         $forms->email = "Email";
 
-    	$forms->tanggalwaktu = date('Y-m-d H:i:s');
-    	$forms->casedue = date('Y-m-d H:i:s');
+    	$forms->tanggalwaktu = $time;
+    	$forms->casedue = $time;
     	$forms->status = "Process";
         //echo $forms->name;
         $forms->save();

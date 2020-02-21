@@ -26,9 +26,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
                 <?= $form->field($model, 'phonenum') ?>
                 <?= $form->field($model, 'location') ?>
-                <?= $form->field($model, 'gambar') ?>
-                <?= $form->field($images, 'imageFiles[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
-                <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+                <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>       <?= $form->field($images, 'imageFiles[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
+                
 
 
                 <div class="form-group">

@@ -23,27 +23,35 @@ class UploadForm extends Model
         ];
     }
     
-    public function upload()
+    public function upload($id,$time)
     {
-        if ($this->validate()) { 
+        //if ($this->validate()) { 
+        //$ups = Yii::getAlias('@/uploads');
+        $index = 1;
+            
             foreach ($this->imageFiles as $file) {
-                $file->saveAs('uploads/' . $file->baseName . '.' . $file->extension);
+                $name = $id."_".$time."_".$index;
+                $file->saveAs('uploads/' .$name. '.' . $file->extension);
+                $index++;
             }
             return true;
-        } else {
-            return false;
-        }
+        //} else {
+        //    return false;
+        //}
     }
 
-    public function saveData($id){
+    public function saveData($id,$time){
 
+        $index = 1;
+        date_default_timezone_set('Asia/Jakarta');
+
+        $name = $id."_".$time."_".$index;
         foreach ($this->imageFiles as $file) {
             $images = new Images();
             //$images->imageFiles =
-
-            $images->imageFiles = $file->baseName . '.' . $file->extension;
+            $images->imageFiles = $name. '.' . $file->extension;
             $images->caseId = $id;
-
+            $index++;
             $images->save();
         }
         return;
